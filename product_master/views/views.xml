@@ -1,0 +1,189 @@
+<odoo>
+    <data>
+
+        <!--     <record model="ir.ui.view" id="view_yarn_master_product_tree">-->
+        <!--            <field name="name">Decimal Precision List</field>-->
+        <!--            <field name="model">yarn.master.product</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <tree >-->
+        <!--                    <field name="name"/>-->
+        <!--&lt;!&ndash;                    <field name="digits"/>&ndash;&gt;-->
+        <!--                </tree>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <record id="product_template_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='purchase_ok']" position="before">
+                    <div>
+                        <field name="master_product" widget="radio" options="{'horizontal': true}"/>
+
+
+                    </div>
+                    <group attrs="{'invisible': [('master_product', '!=', 'yarn_master')]}">
+                        <group>
+<!--                            <field name="yarn_name" invisible="1"/>-->
+                            <field name="name_temp" invisible="1"/>
+
+                            <field name="code"/>
+                            <field name="business_line"/>
+                            <field name="item_group"/>
+                            <field name="item_category" filter_domain="[('item_category', 'child_of', 'item_group')]" />
+                            <field name="greige_dyed"/>
+                        </group>
+                        <group>
+                            <field name="yarn_count"/>
+                            <field name="yarn_structure"/>
+                            <field name="yarn_composition"/>
+                            <field name="yarn_category"/>
+                            <field name="yarn_level"/>
+                            <field name="yarn_weaving_loom"/>
+
+
+                        </group>
+
+                    </group>
+                    <group attrs="{'invisible': [('master_product', '!=', 'item_master')]}">
+                        <group>
+                            <field name="item_name"/>
+
+                            <field name="item_code"/>
+                            <field name="manual_code"/>
+                            <field name="item_description"/>
+                            <field name="barcode"/>
+
+                        </group>
+                        <group>
+                            <field name="primary_uom"/>
+                            <field name="secondary_uom"/>
+                            <field name="remarks"/>
+
+
+                        </group>
+
+                    </group>
+
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="product_category_form_inherit" model="ir.ui.view">
+            <field name="name">product.category.form.inherit</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="code"/>
+                </xpath>
+
+            </field>
+        </record>
+        <!--     explicit list view definition -->
+        <!--        <record model="ir.ui.view" id="product_master.yarn_master_product_tree">-->
+        <!--            <field name="name">Yarn Master Product</field>-->
+        <!--            <field name="model">yarn.master.product</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <tree>-->
+        <!--                    <field name="name"/>-->
+        <!--                    <field name="business_line"/>-->
+        <!--                    <field name="item_category"/>-->
+        <!--                    <field name="item_group"/>-->
+        <!--                    <field name="yarn_category"/>-->
+        <!--                    <field name="yarn_count"/>-->
+        <!--                    <field name="yarn_structure"/>-->
+        <!--                    <field name="yarn_composition"/>-->
+
+        <!--                </tree>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+        <!--        <record model="ir.ui.view" id="product_master.yarn_master_product_form_id">-->
+        <!--            <field name="name">Decimal Precision</field>-->
+        <!--            <field name="model">yarn.master.product</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <form string="Yarn Master Product">-->
+        <!--                    <sheet>-->
+        <!--                        <group>-->
+        <!--                            <group>-->
+
+        <!--                                <field name="code"/>-->
+        <!--                                <field name="name" readonly="1"/>-->
+        <!--                                <field name="business_line"/>-->
+        <!--                                <field name="item_group"/>-->
+        <!--                                <field name="item_category"/>-->
+        <!--                                &lt;!&ndash;                                <button name="_createYarnName" string="Generate RFQ" type="object"&ndash;&gt;-->
+        <!--                                &lt;!&ndash;                            class="oe_highlight"/>&ndash;&gt;-->
+
+
+        <!--                            </group>-->
+        <!--                            <group>-->
+        <!--                                <field name="greige_dyed"/>-->
+        <!--                                <field name="yarn_count"/>-->
+        <!--                                <field name="yarn_structure"/>-->
+        <!--                                <field name="yarn_composition"/>-->
+        <!--                                <field name="yarn_category"/>-->
+        <!--                                <field name="yarn_level"/>-->
+        <!--                                <field name="yarn_waving_loom"/>-->
+        <!--                            </group>-->
+        <!--                            <button name="createYarnName" string="Creat name" type="object" class="btn-secondary"-->
+        <!--                                    data-hotkey="q"/>-->
+
+        <!--                        </group>-->
+        <!--                    </sheet>-->
+        <!--                </form>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <!--        &lt;!&ndash; actions opening views on models &ndash;&gt;-->
+
+        <!--        <record model="ir.actions.act_window" id="product_master.action_window">-->
+        <!--            <field name="name">Yarn Product</field>-->
+        <!--            <field name="res_model">yarn.master.product</field>-->
+        <!--            <field name="view_mode">tree,form</field>-->
+        <!--        </record>-->
+
+
+        <!--        &lt;!&ndash; server action to the one above &ndash;&gt;-->
+        <!--        <record model="ir.actions.server" id="product_master.action_server">-->
+        <!--            <field name="name">product_master server</field>-->
+        <!--            <field name="model_id" ref="model_yarn_master_product"/>-->
+        <!--            <field name="state">code</field>-->
+        <!--            <field name="code">-->
+        <!--                action = {-->
+        <!--                "type": "ir.actions.act_window",-->
+        <!--                "view_mode": "tree,form",-->
+        <!--                "res_model": model._name,-->
+        <!--                }-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+        <!--        &lt;!&ndash; Top menu item &ndash;&gt;-->
+
+        <!--        <menuitem name="Product Master" id="product_master.menu_root"/>-->
+
+
+        <!--        <menuitem id="product_master_yarn_root" name="Master Product"-->
+        <!--                  parent="stock.menu_stock_root"/>-->
+
+
+        <!--        <menuitem id="product_master_yarn" name="Yarn Product"-->
+        <!--                  action="product_master.action_window"-->
+        <!--                  parent="product_master.product_master_yarn_root"/>-->
+
+        <record id="product_code_seq" model="ir.sequence">
+            <field name="name">product_code_seq</field>
+            <field name="code">product_code_seq</field>
+            <field name="active">TRUE</field>
+            <field name="number_next">1</field>
+            <field name="prefix"></field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

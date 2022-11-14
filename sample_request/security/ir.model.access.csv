@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sample_request,sample.request,model_sample_request,base.group_user,1,1,1,1
+access_greige_sample_request,greige.sample.request,model_greige_sample_request,base.group_user,1,1,1,1
+access_disc_greige_sample_request,disc_greige.sample.request,model_disc_greige_sample_request,base.group_user,1,1,1,1
+access_size_greige_sample_request,size.greige.sample.request,model_size_greige_sample_request,base.group_user,1,1,1,1
+access_weight_greige_sample_request,weight.greige.sample.request,model_weight_greige_sample_request,base.group_user,1,1,1,1
+access_pile_count,pile.count,model_pile_count,base.group_user,1,1,1,1
+access_ground_count,ground.count,model_ground_count,base.group_user,1,1,1,1
+access_weft_count,weft.count,model_weft_count,base.group_user,1,1,1,1
+access_blend_sample,blend.sample,model_blend_sample,base.group_user,1,1,1,1
+access_loom_type,loom.type,model_loom_type,base.group_user,1,1,1,1
+access_yarn_type,yarn.type,model_yarn_type,base.group_user,1,1,1,1
+access_fancy_yarn,fancy.yarn,model_fancy_yarn,base.group_user,1,1,1,1
+access_dyeing_color,dyeing.color,model_dyeing_color,base.group_user,1,1,1,1
+access_yarn_pre_cost,yarn.pre.cost,model_yarn_pre_cost,base.group_user,1,1,1,1
+access_pre_cost_rate,pre.cost.rate,model_pre_cost_rate,base.group_user,1,1,1,1

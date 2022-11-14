@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_yarn_weaving_loom,yarn.weaving.loom,model_yarn_weaving_loom,base.group_user,1,1,1,1
+access_yarn_level,yarn.level,model_yarn_level,base.group_user,1,1,1,1
+access_yarn_composition,yarn.composition,model_yarn_composition,base.group_user,1,1,1,1
+access_yarn_structure,yarn.structure,model_yarn_structure,base.group_user,1,1,1,1
+access_yarn_count,yarn.count,model_yarn_count,base.group_user,1,1,1,1
+access_greige_dyed,greige.dyed,model_greige_dyed,base.group_user,1,1,1,1
+access_business_line,business.line,model_business_line,base.group_user,1,1,1,1
+

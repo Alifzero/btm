@@ -1,0 +1,232 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="sample_request.tree">
+            <field name="name">sample_request tree</field>
+            <field name="model">sample.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="requested_by"/>
+                    <field name="f_req_date"/>
+                    <field name="samp_requ_date"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="sample_request_form" model="ir.ui.view">
+            <field name="model">sample.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="DirectorApproval" string="Approved" type="object"
+                                class="oe_highlight"
+                                attrs="{'invisible': [('state', '=', 'approved')]}"/>
+                        <!--                            groups="sample_request.group_management"-->
+                        <!--                         />-->
+                        <field name="state" widget="statusbar" options="{'clickable': '1'}"
+                               statusbar_visible="draft,approved,pre_costing,planing,manufacturing,done"/>
+
+                    </header>
+                    <sheet>
+                        <!--                        <div name="button_box" position="inside">-->
+                        <!--                            <button name="DirectorApproval"-->
+                        <!--                                    class="oe_stat_button"-->
+                        <!--                                    icon="fa-money"-->
+                        <!--                                    type="object">-->
+                        <!--                                <div class="o_field_widget o_stat_info">-->
+                        <!--                                    <span class="o_stat_text">Pre Costing</span>-->
+                        <!--                                </div>-->
+                        <!--                            </button>-->
+                        <!--                        </div>-->
+                        <group>
+                            <group col="4">
+                                <field name="name"/>
+                                <field name="requested_by"/>
+                            </group>
+                            <group>
+                                <field name="f_req_date"/>
+                                <field name="s_req_date"/>
+                                <field name="samp_requ_date"/>
+                            </group>
+                            <group>
+                                <field name="total_required_pcs" readonly="1"/>
+                                <field name="sample_purpose" readonly="1"/>
+                            </group>
+                            <group/>
+                        </group>
+                        <hr/>
+
+                        <group>
+                            <group>
+                                <field name="pile_count"/>
+                                <field name="ground_count"/>
+                                <field name="fancy_design"/>
+                                <field name="yarn_type"/>
+                                <field name="loom_type"/>
+                                <field name="reed"/>
+                            </group>
+                            <group>
+                                <field name="weft_count"/>
+                                <field name="fancy_yarn"/>
+                                <field name="blend"/>
+                                <field name="fancy_size"/>
+                                <field name="cam_size"/>
+                                <field name="fancy_design_size"/>
+                                <field name="picks"/>
+                            </group>
+                        </group>
+
+                        <h2>GREIGE</h2>
+                        <field name="greige" string="Greige" >
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="weight"/>
+                                <field name="size"/>
+                                <field name="gsm"/>
+                                <field name="qty"/>
+                            </tree>
+                        </field>
+
+
+                        <h2>DYEING</h2>
+
+                        <group>
+                            <group>
+                                <field name="soft_flow_drier" widget="radio" options="{'horizontal': True}"/>
+                                <field name="soft_flow_drier_text"/>
+                                <field name="kier_soft_drier" widget="radio" options="{'horizontal': True}"/>
+                                <field name="kier_soft_drier_text"/>
+                                <field name="kier_winch_drier" widget="radio" options="{'horizontal': True}"/>
+                                <field name="kier_winch_drier_text"/>
+                                <field name="kier_winch_hanger" widget="radio" options="{'horizontal': True}"/>
+                                <field name="kier_winch_hanger_text"/>
+                                <field name="stripe_wash" widget="radio" options="{'horizontal': True}"/>
+                                <field name="stripe_wash_text"/>
+                            </group>
+                            <group>
+                                <field name="special_finishes_softness" widget="radio" options="{'horizontal': True}"/>
+                                <field name="special_finishes_softness_text"/>
+                                <field name="bio_polish" widget="radio" options="{'horizontal': True}"/>
+                                <field name="bio_polish_text"/>
+                                <field name="ekotex" widget="radio" options="{'horizontal': True}"/>
+                                <field name="ekotex_text"/>
+                                <field name="others" widget="radio" options="{'horizontal': True}"/>
+                                <field name="others_text"/>
+                            </group>
+
+
+                        </group>
+                        <hr/>
+                        <group>
+                            <field name="color_ref" widget="many2many_tags" options="{'color_field': 'color'}"
+                                   string="Color"/>
+                        </group>
+                        <hr/>
+                        <h2>STITCHING</h2>
+
+                        <group>
+                            <group>
+                                <field name="label"/>
+                                <field name="packaging"/>
+                            </group>
+                            <group>
+                                <field name="total_required_pcs"/>
+                                <field name="sample_purpose"/>
+                            </group>
+                            <group>
+                                <field name="special_inst" string="Any Special Instruction"/>
+                            </group>
+                        </group>
+
+                          <h2 attrs="{'invisible': [('state', 'in', ('draft', 'approved'))]}">Pre Costing</h2>
+                        <field name="pre_costing" mode="tree" attrs="{'invisible': [('state', 'in', ('draft', 'approved'))]}">
+                            <tree editable="bottom">
+                                <field name="yarn_type_pre_cost"/>
+                                <field name="yarn_name"/>
+                                <field name="yarn_color"/>
+                                <field name="yarn_percentage"/>
+                                <field name="yarn_wastage"/>
+                                <field name="yarn_rate"/>
+                                <field name="dyeing_rate"/>
+                                <field name="lbs_cost"/>
+
+                            </tree>
+                        </field>
+
+                        <h2 attrs="{'invisible': [('state', 'in', ('draft', 'approved'))]}">Pre Cost Rate</h2>
+                        <field name="pre_cost_rate"
+                               attrs="{'invisible': [('state', 'in', ('draft', 'approved'))]}">
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="rate_lbs"/>
+                                <field name="rate_pc"/>
+                            </tree>
+                        </field>
+                        <group attrs="{'invisible': [('state', 'in', ('draft', 'approved'))]}">
+                            <group>
+                                <field name="pd_width"/>
+                                <field name="pd_gsm"/>
+                                <field name="pd_length"/>
+                                <field name="pd_weight"/>
+                                <field name="pd_lbs"/>
+                            </group>
+                            <group>
+                                <field name="psc_packs"/>
+                                <field name="pk_carton"/>
+                                <field name="no_of_poly_bags"/>
+                            </group>
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="sample_request.action_window">
+            <field name="name">Sample Request</field>
+            <field name="res_model">sample.request</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- server action to the one above -->
+
+        <record model="ir.actions.server" id="sample_request.action_server">
+            <field name="name">sample_request server</field>
+            <field name="model_id" ref="model_sample_request"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+                }
+            </field>
+        </record>
+
+
+        <record id="sample_request_seq" model="ir.sequence">
+            <field name="name">sample_request_seq</field>
+            <field name="code">sample_request_seq</field>
+            <field name="active">TRUE</field>
+            <field name="number_next">1</field>
+            <field name="prefix">SR-</field>
+            <field name="padding">3</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+        <menuitem id="sample_request_main" name="Sample Request Form"
+                  action="sample_request.action_window"
+                  parent="sale.sale_menu_root"/>
+
+
+    </data>
+</odoo>

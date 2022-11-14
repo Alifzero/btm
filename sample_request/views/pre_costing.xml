@@ -1,0 +1,66 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="sample_request.yarn_pre_cost">
+            <field name="name">Yarn Pre Cost tree</field>
+            <field name="model">yarn.pre.cost</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+
+                    <field name="yarn_name"/>
+                    <field name="yarn_type_pre_cost"/>
+                    <field name="yarn_color"/>
+                    <field name="yarn_percentage"/>
+                    <field name="yarn_wastage"/>
+                    <field name="yarn_rate"/>
+                    <field name="dyeing_rate"/>
+                    <field name="lbs_cost"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sample_request.pre_cost_rate">
+            <field name="name">Pre Cost Rate</field>
+            <field name="model">pre.cost.rate</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+
+                    <field name="name"/>
+                    <field name="rate_lbs"/>
+                    <field name="rate_pc"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="sample_request.pre_cost_rate_windows">
+            <field name="name">Pre Cost Rate</field>
+            <field name="res_model">pre.cost.rate</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="sample_request.yarn_cost_windows">
+            <field name="name">Yarn Cost</field>
+            <field name="res_model">yarn.pre.cost</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.server" id="sample_request.action_server">
+            <field name="name">sample_request server</field>
+            <field name="model_id" ref="model_sample_request"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+                }
+            </field>
+        </record>
+
+<!--        <menuitem id="sample_request_pre_costing_main" name="Pre Costing"-->
+<!--                  action="sample_request.yarn_cost_windows"-->
+<!--                  parent="sale.sale_menu_root"/>-->
+    </data>
+</odoo>
