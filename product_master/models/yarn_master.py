@@ -112,8 +112,8 @@ class yarnProductCategoryProductTemplate(models.Model):
     name = fields.Char(required=False, related='name_temp')
     name_temp = fields.Char(compute='createYarnName')
 
-    # sub_categ_id = fields.Many2one('product.category', 'Item Category', required=True)
-    # yarn_sub_categ_id = fields.Many2one('product.category', 'Yarn Category', required=True)
+    sub_categ_id = fields.Many2one('product.category', 'Item Category', )
+    yarn_sub_categ_id = fields.Many2one('product.category', 'Yarn Category',)
 
     code = fields.Char(string='Yarn Code', compute='YarnCode')
     code_temp = fields.Char()
