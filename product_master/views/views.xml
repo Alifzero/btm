@@ -26,7 +26,7 @@
                     <group attrs="{'invisible': [('master_product', '!=', 'yarn_master')]}">
                         <group>
 <!--                            <field name="yarn_name" invisible="1"/>-->
-                            <field name="name_temp" invisible="1"/>
+<!--                            <field name="name_temp" invisible="1"/>-->
 
                             <field name="code"/>
                             <field name="business_line"/>
