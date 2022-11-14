@@ -128,11 +128,11 @@ class yarnProductCategoryProductTemplate(models.Model):
     yarn_level = fields.Many2one('yarn.level')
     yarn_weaving_loom = fields.Many2one('yarn.weaving.loom')
 
-    # @api.model
-    # def create(self, vals):
-    #     record = super(yarnProductCategoryProductTemplate, self).create(vals)
-    #     record['code_temp'] = self.env['ir.sequence'].next_by_code('product_code_seq') or ('New')
-    #     return record
+    @api.model
+    def create(self, vals):
+        record = super(yarnProductCategoryProductTemplate, self).create(vals)
+        record['code_temp'] = self.env['ir.sequence'].next_by_code('product_code_seq') or ('New')
+        return record
 
     def YarnCode(self):
         yarn_code = str(self.item_category.code) + '-' + str(self.item_group.code) + '-' + str(self.code_temp)
